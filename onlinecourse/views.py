@@ -132,5 +132,11 @@ def extract_answers(request):
         # Calculate the total score
 #def show_exam_result(request, course_id, submission_id):
 
-
-
+ # method to calculate if the learner gets the score of the question
+def is_get_score(self, selected_ids):
+    all_answers = self.choice_set.filter(is_correct=True).count()
+    selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
+    if all_answers == selected_correct:
+        return True
+    else:
+        return False
